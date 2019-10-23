@@ -2,7 +2,6 @@ var sketchProc=function(processingInstance){ with (processingInstance){
     size(400, 400); 
     frameRate(60);
 
-
     // subdivision - split + average
     // beginShape + endShape to enclose the entire shape
     // EXPERIMENT with coloring and number of iterations
@@ -23,7 +22,18 @@ var sketchProc=function(processingInstance){ with (processingInstance){
             }    
         }    
         return result;
-    };    
+    };
+    
+    var draw_fence = function() {
+
+        fill(218,165,32);
+        noStroke();
+        
+        rect(0, 0, 400, 20);    // top
+        rect(0, 380, 400, 20);  // bottom
+        rect(0, 20, 20, 360);   // left
+        rect(380, 20, 20, 360);   // right
+    };
 
     var mouseClicked = function() {
 
@@ -70,8 +80,9 @@ var sketchProc=function(processingInstance){ with (processingInstance){
     };    
 
     var draw = function() {
-        
+
         background(255, 255, 255);
+        draw_fence();
         fill(255, 0, 0);
         if (start === 0) {
             text("Click to set points. Click on first point to end shape.", 20, 20);   
@@ -87,6 +98,7 @@ var sketchProc=function(processingInstance){ with (processingInstance){
                 line(points[i].x, points[i].y, mouseX, mouseY);
             }
         }    
+
         if (done === 1) {
 
             noFill();
